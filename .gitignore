@@ -30,3 +30,6 @@ Pods/
 # Carthage
 Carthage/Checkouts
 Carthage/Build
+
+# Google Services
+GoogleService-Info.plist
