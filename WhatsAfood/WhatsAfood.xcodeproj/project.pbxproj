@@ -13,9 +13,11 @@
 		CCB0075C20BB84E400C08589 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCB0075B20BB84E400C08589 /* Assets.xcassets */; };
 		CCB0075F20BB84E400C08589 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CCB0075D20BB84E400C08589 /* LaunchScreen.storyboard */; };
 		CCB0076720BB874900C08589 /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = CCB0076620BB874900C08589 /* Inceptionv3.mlmodel */; };
+		D6D49BC0AE7065169ECA1DDD /* Pods_WhatsAfood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD8657E6F67858273ABFE7D1 /* Pods_WhatsAfood.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		532201E82D181BC609AA37A0 /* Pods-WhatsAfood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsAfood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsAfood/Pods-WhatsAfood.debug.xcconfig"; sourceTree = "<group>"; };
 		CCB0075120BB84E300C08589 /* WhatsAfood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAfood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCB0075420BB84E300C08589 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCB0075620BB84E300C08589 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +26,8 @@
 		CCB0075E20BB84E400C08589 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CCB0076020BB84E400C08589 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCB0076620BB874900C08589 /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
+		F0310DBDC89C6622F5E36B65 /* Pods-WhatsAfood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsAfood.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhatsAfood/Pods-WhatsAfood.release.xcconfig"; sourceTree = "<group>"; };
+		FD8657E6F67858273ABFE7D1 /* Pods_WhatsAfood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsAfood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D49BC0AE7065169ECA1DDD /* Pods_WhatsAfood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A8D11F07A753441F6EF98D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FD8657E6F67858273ABFE7D1 /* Pods_WhatsAfood.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		CCB0074820BB84E300C08589 = {
 			isa = PBXGroup;
 			children = (
 				CCB0075320BB84E300C08589 /* WhatsAfood */,
 				CCB0075220BB84E300C08589 /* Products */,
+				EF8828DD4E214E95A7F20D85 /* Pods */,
+				2A8D11F07A753441F6EF98D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +82,15 @@
 			path = WhatsAfood;
 			sourceTree = "<group>";
 		};
+		EF8828DD4E214E95A7F20D85 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				532201E82D181BC609AA37A0 /* Pods-WhatsAfood.debug.xcconfig */,
+				F0310DBDC89C6622F5E36B65 /* Pods-WhatsAfood.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CCB0076320BB84E400C08589 /* Build configuration list for PBXNativeTarget "WhatsAfood" */;
 			buildPhases = (
+				3B8743629DFBD674AC1E05DB /* [CP] Check Pods Manifest.lock */,
 				CCB0074D20BB84E300C08589 /* Sources */,
 				CCB0074E20BB84E300C08589 /* Frameworks */,
 				CCB0074F20BB84E300C08589 /* Resources */,
+				0822D376EF179662CABFC095 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +158,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0822D376EF179662CABFC095 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-WhatsAfood/Pods-WhatsAfood-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhatsAfood/Pods-WhatsAfood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3B8743629DFBD674AC1E05DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhatsAfood-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CCB0074D20BB84E300C08589 /* Sources */ = {
@@ -282,6 +347,7 @@
 		};
 		CCB0076420BB84E400C08589 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 532201E82D181BC609AA37A0 /* Pods-WhatsAfood.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -301,6 +367,7 @@
 		};
 		CCB0076520BB84E400C08589 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0310DBDC89C6622F5E36B65 /* Pods-WhatsAfood.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
