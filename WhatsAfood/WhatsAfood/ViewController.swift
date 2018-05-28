@@ -10,11 +10,14 @@ import UIKit
 import CoreML
 import Vision
 import SVProgressHUD
+import Social
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var imageView_Camera: UIImageView!
+    @IBOutlet weak var cameraButton: UIBarButtonItem!
     
+    @IBOutlet weak var shareButton: UIButton!
     let imagePicker = UIImagePickerController()
     
     
@@ -23,21 +26,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imagePicker.delegate = self
         imagePicker.sourceType = .camera
         imagePicker.allowsEditing = false
+        shareButton.isHidden = true
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         viewWillAppear(true)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
+        cameraButton.isEnabled = false
+        SVProgressHUD.show()
+
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView_Camera.image = image
-            SVProgressHUD.show()
             guard let ciimage = CIImage(image: image) else {
                 fatalError("error at converting uiimage to ciimage")
             }
             detect(ciimage)
         }
-        SVProgressHUD.dismiss()
         picker.dismiss(animated: true, completion: nil)
         
     }
@@ -59,6 +64,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
             let item = firstResult.identifier
             self.navigationItem.title = item
+            
+            DispatchQueue.main.async {
+                self.cameraButton.isEnabled = true
+                SVProgressHUD.dismiss()
+                self.shareButton.isHidden = false
+            }
         }
         let handler = VNImageRequestHandler(ciImage: image)
         do{
@@ -69,5 +80,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     }
     
+    @IBAction func sharedtoSocial(_ sender: UIButton) {
+        if SLComposeViewController.isAvailable(forServiceType: SLServiceTypeTwitter){
+            let vc = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+            vc?.setInitialText("Do you agree? It's a/an \(navigationItem.title)?")
+            vc?.add(imageView_Camera.image)
+            present(vc!, animated: true, completion: nil)
+        } else{
+            navigationItem.title = "Pls log in Twitter"
+        }
+    }
 }
 
