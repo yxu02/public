@@ -9,5 +9,5 @@ target 'FlowerDx' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'SVProgressHUD'
-
+pod 'SDWebImage'
 end

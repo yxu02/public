@@ -12,18 +12,20 @@ import Vision
 import Alamofire
 import SwiftyJSON
 import SVProgressHUD
+import SDWebImage
 
 class ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var textLabel: UILabel!
     let imagePicker = UIImagePickerController()
     let WIKI_API = "https://en.wikipedia.org/w/api.php"
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        imagePicker.sourceType = .photoLibrary
+        imagePicker.sourceType = .camera
     }
 
     @IBAction func cameraTapped(_ sender: UIBarButtonItem) {
@@ -36,7 +38,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else{
             fatalError("Error at getting UI image")
         }
-        imageView.image = image
+//        imageView.image = image
         guard let ciimage = CIImage(image: image) else{
             fatalError("Error at getting CIImage")
         }
@@ -79,22 +81,35 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         let params: [String: String] = [
             "format" : "json",
             "action" : "query",
-            "prop" : "extracts",
+            "prop" : "extracts|pageimages",
             "exintro" : "",
             "explaintext" : "",
             "titles" : mlResultName,
             "indexpageids" : "",
-            "redirects" : "1"
+            "redirects" : "1",
+            "pithumbsize" : "500"
         ]
         Alamofire.request(WIKI_API, method: .get, parameters: params).responseJSON {
             (response) in
             if response.result.isSuccess{
                 let wikiJSON: JSON = JSON(response.result.value!)
                 print(wikiJSON)
+                self.updateWikiResult(wikiJSON)
             }
             if response.result.isFailure{
                 print("Error: \(String(describing: response.result.error))")
             }
+        }
+    }
+    
+    func updateWikiResult(_ json: JSON){
+        
+        if let pageId = json["query"]["pageids"][0].string {
+            textLabel.text = json["query"]["pages"][pageId]["extract"].stringValue
+            let wikiImageURL = json["query"]["pages"][pageId]["thumbnail"]["source"].stringValue
+            imageView.sd_setImage(with: URL(string: wikiImageURL), completed: nil)
+        } else{
+            textLabel.text = "Server Error!"
         }
     }
 }
