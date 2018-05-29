@@ -33,3 +33,6 @@ Carthage/Build
 
 # Google Services
 GoogleService-Info.plist
+
+# mlmodels
+*.mlmodel
