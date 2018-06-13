@@ -7,15 +7,15 @@ public class SoldOutState implements State {
         this.gumballMachine = gumballMachine;
     }
  
-	public void insertQuarter() {
-		System.out.println("You can't insert a quarter, the machine is sold out");
+	public void insertQuarter(String quarter) {
+		System.out.printf("You can't insert a %s, the machine is sold out\n", quarter);
 	}
  
-	public void ejectQuarter() {
-		System.out.println("You can't eject, you haven't inserted a quarter yet");
+	public void ejectQuarter(String quarter) {
+		System.out.printf("You can't eject, you haven't inserted a %s yet\n", quarter);
 	}
  
-	public void turnCrank() {
+	public void turnCrank(String quarter) {
 		System.out.println("You turned, but there are no gumballs");
 	}
  

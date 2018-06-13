@@ -9,29 +9,32 @@ public class GumballMachine {
  
 	State state = soldOutState;
 	int count = 0;
+	String coinType;
  
-	public GumballMachine(int numberGumballs) {
+	public GumballMachine(int numberGumballs, String coinType) {
 		soldOutState = new SoldOutState(this);
 		noQuarterState = new NoQuarterState(this);
 		hasQuarterState = new HasQuarterState(this);
 		soldState = new SoldState(this);
 
 		this.count = numberGumballs;
+		this.coinType = coinType;
+
  		if (numberGumballs > 0) {
 			state = noQuarterState;
 		} 
 	}
  
 	public void insertQuarter() {
-		state.insertQuarter();
+		state.insertQuarter(this.coinType);
 	}
  
 	public void ejectQuarter() {
-		state.ejectQuarter();
+		state.ejectQuarter(this.coinType);
 	}
  
 	public void turnCrank() {
-		state.turnCrank();
+		state.turnCrank(this.coinType);
 		state.dispense();
 	}
 
@@ -84,7 +87,11 @@ public class GumballMachine {
 			result.append("s");
 		}
 		result.append("\n");
-		result.append("Machine is " + state + "\n");
+		if(this.coinType.equals("coinType")) {
+            result.append("Machine is " + state + "\n");
+        } else if (this.coinType.equals("coin")){
+		    result.append("Machine is waiting for coin\n");
+        }
 		return result.toString();
 	}
 }
