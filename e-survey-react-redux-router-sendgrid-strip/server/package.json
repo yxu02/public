@@ -1,0 +1,42 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "engines": {
+    "node": "8.11.1",
+    "npm": "5.6.0"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run webhook\"",
+    "webhook": "ssh -R fsergfghyxcvasefasdrgsthdfh:80:localhost:5000 serveo.net"
+  },
+  "keywords": [
+    "npm",
+    "react",
+    "nodejs",
+    "js",
+    "mongodb",
+    "express"
+  ],
+  "author": "Yu Xu",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "concurrently": "^3.5.1",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.3",
+    "localtunnel": "^1.9.0",
+    "lodash": "^4.17.10",
+    "mongoose": "^5.1.4",
+    "nodemon": "^1.17.5",
+    "passport": "^0.4.0",
+    "passport-google-oauth20": "^1.0.0",
+    "path-parser": "^4.1.1",
+    "sendgrid": "^5.2.3",
+    "stripe": "^6.2.1"
+  }
+}
